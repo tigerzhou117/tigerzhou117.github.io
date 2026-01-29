@@ -1,0 +1,741 @@
+<html lang="zh-CN"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tiger Zhou's Website</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#165DFF',
+                        secondary: '#0FC6C2',
+                        dark: '#1D2129',
+                        light: '#F2F3F5',
+                        darkbg: '#0F172A'
+                    },
+                    fontFamily: {
+                        inter: ['Inter', 'system-ui', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .content-auto {
+                content-visibility: auto;
+            }
+            .text-shadow {
+                text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            }
+            .animate-float {
+                animation: float 6s ease-in-out infinite;
+            }
+            .bg-gradient-custom {
+                background: linear-gradient(135deg, #165DFF 0%, #0FC6C2 100%);
+            }
+            .card-hover {
+                transition: all 0.3s ease;
+            }
+            .card-hover:hover {
+                transform: translateY(-8px);
+            }
+            .glow {
+                box-shadow: 0 0 15px rgba(22, 93, 255, 0.5);
+            }
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0px); }
+        }
+
+        body {
+            background-color: #0F172A;
+        }
+
+
+    </style>
+</head>
+<body class="font-inter text-light overflow-x-hidden bg-darkbg">
+
+
+    <!-- 主内容区 -->
+    <main class="relative z-10 min-h-screen">
+        <!-- 导航栏 -->
+        <nav class="fixed top-0 left-0 w-full bg-darkbg/80 backdrop-blur-md z-50 transition-all duration-300 shadow-lg" id="navbar">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex justify-between items-center h-16">
+                    <div class="flex items-center">
+                        <span class="text-primary font-bold text-xl">Developer<span class="text-secondary">Works</span></span>
+                    </div>
+                    <div class="hidden md:block">
+                        <div class="flex items-center space-x-6">
+                            <a href="#about" class="text-light hover:text-primary transition-colors duration-200" data-i18n="nav.about">关于我</a>
+                            <a href="#works" class="text-light hover:text-primary transition-colors duration-200" data-i18n="nav.works">作品</a>
+                            <a href="#contact" class="text-light hover:text-primary transition-colors duration-200" data-i18n="nav.contact">联系我</a>
+                            <button id="language-toggle" class="text-light hover:text-primary transition-colors duration-200 flex items-center space-x-1">
+                                <span id="current-lang">中文</span>
+                                <i class="fa fa-globe"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="md:hidden">
+                        <button id="menu-toggle" class="text-light hover:text-primary focus:outline-none">
+                            <i class="fa fa-bars text-xl"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <!-- 移动端菜单 -->
+            <div id="mobile-menu" class="hidden md:hidden bg-darkbg shadow-lg absolute w-full">
+                <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                    <a href="#about" class="block px-3 py-2 rounded-md text-base font-medium text-light hover:bg-primary/10 hover:text-primary" data-i18n="nav.about">关于我</a>
+                    <a href="#works" class="block px-3 py-2 rounded-md text-base font-medium text-light hover:bg-primary/10 hover:text-primary" data-i18n="nav.works">作品</a>
+                    <a href="#contact" class="block px-3 py-2 rounded-md text-base font-medium text-light hover:bg-primary/10 hover:text-primary" data-i18n="nav.contact">联系我</a>
+                    <button id="language-toggle-mobile" class="block w-full text-left px-3 py-2 rounded-md text-base font-medium text-light hover:bg-primary/10 hover:text-primary flex items-center justify-between">
+                        <span data-i18n="nav.language">语言</span>
+                        <span id="current-lang-mobile">中文</span>
+                    </button>
+                </div>
+            </div>
+        </nav>
+
+        <!-- 个人简介区域 -->
+        <section id="about" class="pt-32 pb-20 bg-gradient-to-b from-darkbg to-dark">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex flex-col md:flex-row items-center">
+                    <div class="w-full md:w-1/3 mb-10 md:mb-0 flex justify-center">
+                        <div class="relative">
+                            <div class="w-48 h-48 md:w-64 md:h-64 rounded-full bg-gradient-custom p-2 animate-float glow">
+                                <img src="http://www.tigerz.asia/image/touxiang.JPG" alt="开发者头像" class="w-full h-full object-cover rounded-full">
+                            </div>
+                            <div class="absolute -bottom-4 -right-4 bg-dark p-2 rounded-full shadow-lg">
+                                <span class="text-xs font-bold bg-gradient-custom text-white px-3 py-1 rounded-full" data-i18n="hero.badge">独立开发者</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="w-full md:w-2/3 md:pl-16">
+                        <h1 class="text-[clamp(2rem,5vw,3.5rem)] font-bold text-light leading-tight mb-4">
+                            <span data-i18n="hero.greeting">你好，我是</span> <span class="text-primary">Tiger Zhou</span>
+                        </h1>
+                        <p class="text-lg text-gray-400 mb-6 max-w-2xl" data-i18n="hero.description">
+                            一位专注于 iOS 和 Apple Watch 应用开发的独立开发者，拥有5年移动应用开发经验。热衷于创造简洁而优雅的用户体验，我的作品已被超过100万用户使用。
+                        </p>
+                        <div class="flex gap-4">
+                            <a href="https://x.com/tigerzhou117?s=21" class="w-10 h-10 rounded-full bg-[#333] flex items-center justify-center text-white hover:bg-[#222] transition-colors duration-200" target="_blank" rel="noopener noreferrer">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40" width="22" height="22" fill="currentColor" aria-label="X"><rect width="40" height="40" rx="20" fill="none"/><path d="M28.7 11.3c-.4-.4-1-.4-1.4 0l-7.3 7.3-7.3-7.3c-.4-.4-1-.4-1.4 0s-.4 1 0 1.4l7.3 7.3-7.3 7.3c-.4.4-.4 1 0 1.4.2.2.5.3.7.3s.5-.1.7-.3l7.3-7.3 7.3 7.3c.2.2.5.3.7.3s.5-.1.7-.3c.4-.4.4-1 0-1.4l-7.3-7.3 7.3-7.3c.4-.4.4-1 0-1.4z"/></svg>
+                            </a>
+                            <a href="https://www.instagram.com/tigerzhou2025?igsh=MXB1cWt0dnFqa2thZA%3D%3D&utm_source=qr" class="w-10 h-10 rounded-full bg-[#E040FB] flex items-center justify-center text-white hover:bg-[#D500F9] transition-colors duration-200" target="_blank">
+                                <i class="fa fa-instagram"></i>
+                            </a>
+                            <a href="https://github.com/tigerzhou117" class="w-10 h-10 rounded-full bg-[#333] flex items-center justify-center text-white hover:bg-[#222] transition-colors duration-200" target="_blank">
+                                <i class="fa fa-github"></i>
+                            </a>
+                            <a href="https://www.xiaohongshu.com/user/profile/64ae62c4000000002b008383?xsec_token=YBbEmOUP8G6PUXvphNo288NrPl6jQbwBT8bqJcaMAUqRM=&xsec_source=app_share&xhsshare=CopyLink&appuid=64ae62c4000000002b008383&apptime=1751796123&share_id=73a726ec311f4f579c1c9777049d4593" class="w-10 h-10 rounded-full bg-[#FF2442] flex items-center justify-center text-white hover:bg-[#e60023] transition-colors duration-200" target="_blank">
+                                <i class="fa fa-book" aria-hidden="true"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 作品展示区域 -->
+        <section id="works" class="py-20 bg-dark">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16">
+                    <h2 class="text-[clamp(1.8rem,4vw,2.5rem)] font-bold text-light mb-4" data-i18n="works.title">我的作品</h2>
+                    <p class="text-gray-400 max-w-2xl mx-auto" data-i18n="works.subtitle">探索我开发的应用程序，每一个作品都代表着我对细节的关注和对用户体验的追求。</p>
+                </div>
+
+                <!-- iOS应用 -->
+                <div class="mb-16">
+                    <h3 class="text-2xl font-bold text-light mb-8 flex items-center">
+                        <span class="text-primary mr-3 text-2xl">📱</span> <span data-i18n="works.ios">iOS 应用</span>
+                    </h3>
+                    <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-8">
+                        <!-- 应用卡片 1 -->
+                            
+                            <a href="https://apps.apple.com/us/app/background-text/id6741785039" target="_blank" rel="noopener noreferrer" class="flex flex-col items-center card-hover">
+                                <div class="w-32 h-32 mb-4 rounded-3xl overflow-hidden shadow-lg">
+                                    <img src="https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/86/aa/d1/86aad15c-98e1-03ae-27f6-233bc93b20d5/AppIcon-0-0-1x_U007emarketing-0-11-0-85-220.png/460x0w.webp" alt="TaskFlow应用图标" class="w-full h-full object-cover">
+                                </div>
+                                <h4 class="font-bold text-light text-center" data-i18n="works.backgroundtext">背景文字</h4>
+                            </a>
+                        
+
+                        <!-- 应用卡片 2 -->
+                        <a href="https://apps.apple.com/us/app/autofill-flash-checkout/id6751758741" target="_blank" rel="noopener noreferrer" class="flex flex-col items-center card-hover">
+                            <div class="w-32 h-32 mb-4 rounded-3xl overflow-hidden shadow-lg">
+                                <img src="https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/5a/79/12/5a79125b-65f4-8cb9-e1c0-64b210fe2333/AppIcon-0-0-1x_U007epad-0-1-85-220.png/460x0w.webp" alt="PhotoLab应用图标" class="w-full h-full object-cover">
+                            </div>
+                            <h4 class="font-bold text-light text-center" data-i18n="works.autofill">AutoFill</h4>
+                        </a>
+                        
+                        <!-- 应用卡片 3 -->
+                        <a href="https://apps.apple.com/us/app/flashkey-quick-phrase-input/id6756609473" target="_blank" rel="noopener noreferrer" class="flex flex-col items-center card-hover">
+                            <div class="w-32 h-32 mb-4 rounded-3xl overflow-hidden shadow-lg">
+                                <img src="https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/d2/5f/bf/d25fbfbf-cc85-32fa-400a-2334ded6aa87/Placeholder.mill/400x400bb-75.webp" alt="PhotoLab应用图标" class="w-full h-full object-cover">
+                            </div>
+                            <h4 class="font-bold text-light text-center" data-i18n="works.flashkey">FlashKey</h4>
+                        </a>
+
+                        <!-- 应用卡片 4 -->
+                        <a href="https://apps.apple.com/us/app/myrank/id6743495140" target="_blank" rel="noopener noreferrer" class="flex flex-col items-center card-hover">
+                            <div class="w-32 h-32 mb-4 rounded-3xl overflow-hidden shadow-lg">
+                                <img src="https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/3b/ba/72/3bba72c9-57b7-68db-1cfa-9d5b4b39ea74/AppIcon-0-0-1x_U007ephone-0-1-85-220.png/460x0w.webp" alt="PhotoLab应用图标" class="w-full h-full object-cover">
+                            </div>
+                            <h4 class="font-bold text-light text-center" data-i18n="works.myrank">MyRank</h4>
+                        </a>
+                        
+                    </div>
+                </div>
+
+                <!-- Apple Watch应用 -->
+                <div class="mb-16">
+                    <h3 class="text-2xl font-bold text-light mb-8 flex items-center">
+                        <span class="text-primary mr-3 text-2xl">⌚️</span> <span data-i18n="works.watch">Apple Watch 应用</span>
+                    </h3>
+                    <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-8">
+                        <!-- 应用卡片 1 -->
+                        <a href="https://apps.apple.com/us/app/block-breaker-for-watch/id6742354214" target="_blank" rel="noopener noreferrer" class="flex flex-col items-center card-hover">
+                            <div class="w-32 h-32 mb-4 rounded-3xl overflow-hidden shadow-lg">
+                                <img src="https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/29/69/7d/29697db4-4973-482e-899c-80905d28464a/AppIcon-0-0-1x_U007ewatch-0-1-85-220.jpeg/460x0w.webp" alt="HealthTrack应用图标" class="w-full h-full object-cover">
+                            </div>
+                            <h4 class="font-bold text-light text-center" data-i18n="works.blockbreaker">打砖块</h4>
+                        </a>
+
+                        <!-- 应用卡片 2 -->
+                        <a href="https://apps.apple.com/us/app/galaxy-wars-for-watch/id6742712670" target="_blank" rel="noopener noreferrer" class="flex flex-col items-center card-hover">
+                            <div class="w-32 h-32 mb-4 rounded-3xl overflow-hidden shadow-lg">
+                                <img src="https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/d1/a0/6c/d1a06c69-6ec5-d13d-7d0f-23758e7ac5af/AppIcon-0-0-1x_U007ewatch-0-1-85-220.png/460x0w.webp" alt="QuickRemind应用图标" class="w-full h-full object-cover">
+                            </div>
+                            <h4 class="font-bold text-light text-center" data-i18n="works.galaxywars">银河远征</h4>
+                        </a>
+
+                        <!-- 应用卡片 3 -->
+                        <a href="https://apps.apple.com/us/app/sokoban-for-watch/id6743372052" target="_blank" rel="noopener noreferrer" class="flex flex-col items-center card-hover">
+                            <div class="w-32 h-32 mb-4 rounded-3xl overflow-hidden shadow-lg">
+                                <img src="https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/0d/24/91/0d249189-151f-8046-7022-b26c810ab1c0/AppIcon-0-0-1x_U007ewatch-0-1-85-220.png/460x0w.webp" alt="WeatherNow应用图标" class="w-full h-full object-cover">
+                            </div>
+                            <h4 class="font-bold text-light text-center" data-i18n="works.sokoban">推箱子</h4>
+                        </a>
+
+                        <!-- 应用卡片 4 -->
+                        <a href="https://apps.apple.com/us/app/panda-klotski-for-watch/id6744314589" target="_blank" rel="noopener noreferrer" class="flex flex-col items-center card-hover">
+                            <div class="w-32 h-32 mb-4 rounded-3xl overflow-hidden shadow-lg">
+                                <img src="https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/a2/f4/b3/a2f4b381-cc80-ae59-5d95-7d8e0edb2860/AppIcon-0-0-1x_U007ewatch-0-1-85-220.png/460x0w.webp" alt="watchOS应用图标" class="w-full h-full object-cover">
+                            </div>
+                            <h4 class="font-bold text-light text-center" data-i18n="works.pandaklotski">熊猫华容道</h4>
+                        </a>
+
+                        <!-- 应用卡片 5 -->
+                        <a href="https://apps.apple.com/us/app/drop-or-die-for-watch/id6743212105" target="_blank" rel="noopener noreferrer" class="flex flex-col items-center card-hover">
+                            <div class="w-32 h-32 mb-4 rounded-3xl overflow-hidden shadow-lg">
+                                <img src="https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/34/19/92/34199259-4ecf-ff74-16a9-0716961e423a/AppIcon-0-0-1x_U007ewatch-0-1-sRGB-85-220.png/460x0w.webp" alt="新应用图标" class="w-full h-full object-cover">
+                            </div>
+                            <h4 class="font-bold text-light text-center" data-i18n="works.dropordie">是男人下100层</h4>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- 其他工具 -->
+                <div>
+                    <h3 class="text-2xl font-bold text-light mb-8 flex items-center">
+                        <span class="text-primary mr-3 text-2xl">🛠️</span> <span data-i18n="works.tools">其他工具</span>
+                    </h3>
+                    <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-8">
+                        <!-- 应用卡片 1 
+                        <a id="iphone-card" class="flex flex-col items-center card-hover cursor-pointer">
+                            <div class="w-32 h-32 mb-4 rounded-3xl overflow-hidden shadow-lg">
+                                <img src="http://www.tigerz.asia/image/apple.jpg" alt="FileOrganizer应用图标" class="w-full h-full object-cover">
+                            </div>
+                            <h4 class="font-bold text-light text-center" data-i18n="works.iphone">iPhone抢购工具 一键填表</h4>
+                        </a> -->
+                        
+
+                        <!-- 应用卡片 2 -->
+                        <div id="mbti-card" class="flex flex-col items-center card-hover cursor-pointer">
+                            <div class="w-32 h-32 mb-4 rounded-3xl overflow-hidden shadow-lg">
+                                <img src="http://www.tigerz.asia/image/mbti.png" alt="PasswordGuard应用图标" class="w-full h-full object-cover">
+                            </div>
+                            <h4 class="font-bold text-light text-center" data-i18n="works.mbti">MBTI免费测试</h4>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 联系区域 -->
+        <section id="contact" class="py-20 bg-gradient-to-b from-dark to-darkbg">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16">
+                    <h2 class="text-[clamp(1.8rem,4vw,2.5rem)] font-bold text-light mb-4" data-i18n="contact.title">联系我</h2>
+                    <p class="text-gray-400 max-w-2xl mx-auto" data-i18n="contact.subtitle">有任何问题或合作机会？请随时与我联系，我会尽快回复你。</p>
+                </div>
+
+                <div class="max-w-4xl mx-auto bg-dark/80 rounded-2xl shadow-lg p-8 md:p-12">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <div>
+                            <h3 class="text-xl font-bold text-light mb-6" data-i18n="contact.info">联系方式</h3>
+                            <div class="space-y-4">
+                                <div class="flex items-start">
+                                    <div class="bg-primary/10 p-3 rounded-full mr-4">
+                                        <i class="fa fa-envelope text-primary"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-bold text-light" data-i18n="contact.email">邮箱</h4>
+                                        <p class="text-gray-400">tigerzhou117@gmail.com</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="flex items-start">
+                                    <div class="bg-primary/10 p-3 rounded-full mr-4">
+                                        <i class="fa fa-globe text-primary"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-bold text-light" data-i18n="contact.website">网站</h4>
+                                        <p class="text-gray-400">www.tigerz.asia</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="mt-10">
+                                <h3 class="text-xl font-bold text-light mb-4" data-i18n="contact.follow">关注我</h3>
+                                <div class="flex gap-4">
+                                    <a href="https://x.com/tiger2hou?s=21" class="w-10 h-10 rounded-full bg-[#333] flex items-center justify-center text-white hover:bg-[#222] transition-colors duration-200" target="_blank" rel="noopener noreferrer">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40" width="22" height="22" fill="currentColor" aria-label="X"><rect width="40" height="40" rx="20" fill="none"/><path d="M28.7 11.3c-.4-.4-1-.4-1.4 0l-7.3 7.3-7.3-7.3c-.4-.4-1-.4-1.4 0s-.4 1 0 1.4l7.3 7.3-7.3 7.3c-.4.4-.4 1 0 1.4.2.2.5.3.7.3s.5-.1.7-.3l7.3-7.3 7.3 7.3c.2.2.5.3.7.3s.5-.1.7-.3c.4-.4.4-1 0-1.4l-7.3-7.3 7.3-7.3c.4-.4.4-1 0-1.4z"/></svg>
+                            </a>
+                            <a href="https://www.instagram.com/tigerzhou2025?igsh=MXB1cWt0dnFqa2thZA%3D%3D&utm_source=qr" class="w-10 h-10 rounded-full bg-[#E040FB] flex items-center justify-center text-white hover:bg-[#D500F9] transition-colors duration-200" target="_blank">
+                                <i class="fa fa-instagram"></i>
+                            </a>
+                            <a href="https://github.com/tigerzhou117" class="w-10 h-10 rounded-full bg-[#333] flex items-center justify-center text-white hover:bg-[#222] transition-colors duration-200" target="_blank">
+                                <i class="fa fa-github"></i>
+                            </a>
+                            <a href="https://www.xiaohongshu.com/user/profile/64ae62c4000000002b008383?xsec_token=YBbEmOUP8G6PUXvphNo288NrPl6jQbwBT8bqJcaMAUqRM=&xsec_source=app_share&xhsshare=CopyLink&appuid=64ae62c4000000002b008383&apptime=1751796123&share_id=73a726ec311f4f579c1c9777049d4593" class="w-10 h-10 rounded-full bg-[#FF2442] flex items-center justify-center text-white hover:bg-[#e60023] transition-colors duration-200" target="_blank">
+                                <i class="fa fa-book" aria-hidden="true"></i>
+                            </a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div>
+                            <h3 class="text-xl font-bold text-light mb-6" data-i18n="contact.message">发送消息</h3>
+                            <form action="https://formspree.io/f/mqaboygz" method="POST" class="space-y-4" id="contact-form">
+                                <div>
+                                    <label for="name" class="block text-sm font-medium text-gray-400 mb-1" data-i18n="contact.form.name">姓名</label>
+                                    <input type="text" id="name" name="name" required class="w-full px-4 py-2 bg-dark border border-gray-700 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent text-light" data-i18n-placeholder="contact.form.namePlaceholder" placeholder="请输入你的姓名">
+                                </div>
+                                <div>
+                                    <label for="email" class="block text-sm font-medium text-gray-400 mb-1" data-i18n="contact.form.email">邮箱</label>
+                                    <input type="email" id="email" name="email" required class="w-full px-4 py-2 bg-dark border border-gray-700 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent text-light" data-i18n-placeholder="contact.form.emailPlaceholder" placeholder="请输入你的邮箱">
+                                </div>
+                                <div>
+                                    <label for="message" class="block text-sm font-medium text-gray-400 mb-1" data-i18n="contact.form.message">消息</label>
+                                    <textarea id="message" name="message" rows="4" required class="w-full px-4 py-2 bg-dark border border-gray-700 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent text-light" data-i18n-placeholder="contact.form.messagePlaceholder" placeholder="请输入你的消息"></textarea>
+                                </div>
+                                <button type="submit" class="w-full bg-primary hover:bg-primary/90 text-white font-medium py-2 px-4 rounded-lg transition-colors duration-200" data-i18n="contact.form.submit">
+                                    发送消息
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 页脚 -->
+        <footer class="bg-dark py-10">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex flex-col md:flex-row justify-between items-center">
+                    <div class="mb-6 md:mb-0">
+                        <span class="text-primary font-bold text-xl">Developer<span class="text-secondary">Works</span></span>
+                        <p class="text-gray-400 mt-2" data-i18n="footer.copyright">© 2025 Tiger Zhou 保留所有权利.</p>
+                        <p class="text-gray-400 mt-2">备案号：<a href="https://beian.miit.gov.cn" target="_blank" rel="noopener">渝ICP备2024028483号-4</a></p>
+                    </div>
+                    
+                </div>
+            </div>
+        </footer>
+    </main>
+
+    <!-- MBTI弹窗结构 -->
+    <div id="mbti-modal" class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-60 hidden">
+        <div class="bg-white rounded-2xl p-6 relative max-w-xs w-full flex flex-col items-center">
+            <img src="http://www.tigerz.asia/image/miniapp.jpeg" alt="MBTI测试二维码" class="w-60 h-60 object-cover rounded-xl mb-4">
+            <button id="mbti-modal-close" class="absolute top-2 right-2 text-gray-500 hover:text-primary text-2xl">&times;</button>
+        </div>
+    </div>
+
+    <script>
+        // 语言切换功能
+        const translations = {
+            zh: {
+                nav: {
+                    about: "关于我",
+                    works: "作品",
+                    contact: "联系我",
+                    language: "语言"
+                },
+                hero: {
+                    greeting: "你好，我是",
+                    description: "一位专注于 iOS 和 Apple Watch 应用开发的独立开发者，拥有5年移动应用开发经验。热衷于创造简洁而优雅的用户体验，我的作品已被超过100万用户使用。",
+                    badge: "独立开发者"
+                },
+                works: {
+                    title: "我的作品",
+                    subtitle: "探索我开发的应用程序，每一个作品都代表着我对细节的关注和对用户体验的追求。",
+                    ios: "iOS 应用",
+                    watch: "Apple Watch 应用",
+                    tools: "其他工具",
+                    backgroundtext: "背景文字",
+                    myrank: "MyRank",
+                    autofill: "AutoFill",
+                    flashkey: "FlashKey",
+                    blockbreaker: "打砖块",
+                    galaxywars: "银河远征",
+                    sokoban: "推箱子",
+                    pandaklotski: "熊猫华容道",
+                    dropordie: "是男人就下100层",
+                    iphone: "iPhone抢购工具 一键填表",
+                    mbti: "MBTI免费测试"
+                },
+                contact: {
+                    title: "联系我",
+                    subtitle: "有任何问题或合作机会？请随时与我联系，我会尽快回复你。",
+                    info: "联系方式",
+                    email: "邮箱",
+                    website: "网站",
+                    follow: "关注我",
+                    message: "发送消息",
+                    form: {
+                        name: "姓名",
+                        namePlaceholder: "请输入你的姓名",
+                        email: "邮箱",
+                        emailPlaceholder: "请输入你的邮箱",
+                        message: "消息",
+                        messagePlaceholder: "请输入你的消息",
+                        submit: "发送消息"
+                    }
+                },
+                footer: {
+                    copyright: "© 2025 Tiger Zhou 保留所有权利."
+                }
+            },
+            en: {
+                nav: {
+                    about: "About",
+                    works: "Works",
+                    contact: "Contact",
+                    language: "Language"
+                },
+                hero: {
+                    greeting: "Hello, I'm",
+                    description: "An independent developer focused on iOS and Apple Watch app development with 5 years of mobile app development experience. Passionate about creating clean and elegant user experiences, my works have been used by over 1 million users.",
+                    badge: "Independent Developer"
+                },
+                works: {
+                    title: "My Works",
+                    subtitle: "Explore the applications I've developed, each representing my attention to detail and pursuit of user experience.",
+                    ios: "iOS Apps",
+                    watch: "Apple Watch Apps",
+                    tools: "Other Tools",
+                    backgroundtext: "Background Text",
+                    myrank: "MyRank",
+                    autofill: "AutoFill",
+                    flashkey: "FlashKey",
+                    blockbreaker: "Block Breaker",
+                    galaxywars: "Galaxy Wars",
+                    sokoban: "Sokoban",
+                    pandaklotski: "Panda Klotski",
+                    dropordie: "Drop or Die",
+                    iphone: "iPhone Purchase Tool",
+                    mbti: "MBTI Free Test"
+                },
+                contact: {
+                    title: "Contact Me",
+                    subtitle: "Have any questions or collaboration opportunities? Feel free to contact me, I'll reply as soon as possible.",
+                    info: "Contact Information",
+                    email: "Email",
+                    website: "Website",
+                    follow: "Follow Me",
+                    message: "Send Message",
+                    form: {
+                        name: "Name",
+                        namePlaceholder: "Please enter your name",
+                        email: "Email",
+                        emailPlaceholder: "Please enter your email",
+                        message: "Message",
+                        messagePlaceholder: "Please enter your message",
+                        submit: "Send Message"
+                    }
+                },
+                footer: {
+                    copyright: "© 2025 Tiger Zhou All rights reserved."
+                }
+            }
+        };
+
+        let currentLanguage = 'zh';
+
+        function updateLanguage(lang) {
+            currentLanguage = lang;
+            const elements = document.querySelectorAll('[data-i18n]');
+            
+            elements.forEach(element => {
+                const key = element.getAttribute('data-i18n');
+                const keys = key.split('.');
+                let value = translations[lang];
+                
+                for (const k of keys) {
+                    value = value[k];
+                }
+                
+                if (value) {
+                    element.textContent = value;
+                }
+            });
+
+            // 更新placeholder
+            const placeholderElements = document.querySelectorAll('[data-i18n-placeholder]');
+            placeholderElements.forEach(element => {
+                const key = element.getAttribute('data-i18n-placeholder');
+                const keys = key.split('.');
+                let value = translations[lang];
+                
+                for (const k of keys) {
+                    value = value[k];
+                }
+                
+                if (value) {
+                    element.placeholder = value;
+                }
+            });
+
+            // 更新语言切换按钮文本
+            const currentLangElements = document.querySelectorAll('#current-lang, #current-lang-mobile');
+            currentLangElements.forEach(element => {
+                element.textContent = lang === 'zh' ? '中文' : 'English';
+            });
+
+            // 保存语言偏好到localStorage
+            localStorage.setItem('preferred-language', lang);
+        }
+
+        // 初始化语言
+        document.addEventListener('DOMContentLoaded', function() {
+            // 获取用户系统语言
+            function getSystemLanguage() {
+                // 优先使用navigator.languages（支持的语言列表）
+                if (navigator.languages && navigator.languages.length > 0) {
+                    return navigator.languages[0];
+                }
+                // 回退到navigator.language
+                return navigator.language || navigator.userLanguage;
+            }
+
+            // 检测支持的语言
+            function detectPreferredLanguage() {
+                // 首先检查localStorage中保存的语言偏好
+                const savedLanguage = localStorage.getItem('preferred-language');
+                if (savedLanguage) {
+                    return savedLanguage;
+                }
+
+                // 如果没有保存的语言偏好，则检测系统语言
+                const systemLang = getSystemLanguage();
+                
+                // 支持的中文语言代码
+                const chineseLanguages = ['zh', 'zh-cn', 'zh-tw', 'zh-hk', 'zh-sg'];
+                // 支持的英文语言代码
+                const englishLanguages = ['en', 'en-us', 'en-gb', 'en-ca', 'en-au'];
+                
+                // 检查系统语言是否在支持的语言列表中
+                if (chineseLanguages.includes(systemLang) || chineseLanguages.includes(systemLang.toLowerCase())) {
+                    return 'zh';
+                }
+                
+                if (englishLanguages.includes(systemLang) || englishLanguages.includes(systemLang.toLowerCase())) {
+                    return 'en';
+                }
+                
+                // 如果系统语言不支持，默认使用英文
+                return 'en';
+            }
+
+            const preferredLanguage = detectPreferredLanguage();
+            
+            // 调试信息（可选，生产环境可以移除）
+            console.log('系统语言检测结果:', {
+                navigatorLanguage: navigator.language,
+                navigatorLanguages: navigator.languages,
+                detectedLanguage: preferredLanguage
+            });
+            
+            updateLanguage(preferredLanguage);
+
+            // 语言切换按钮事件
+            const languageToggle = document.getElementById('language-toggle');
+            const languageToggleMobile = document.getElementById('language-toggle-mobile');
+            
+            if (languageToggle) {
+                languageToggle.addEventListener('click', function() {
+                    const newLang = currentLanguage === 'zh' ? 'en' : 'zh';
+                    updateLanguage(newLang);
+                });
+            }
+            
+            if (languageToggleMobile) {
+                languageToggleMobile.addEventListener('click', function() {
+                    const newLang = currentLanguage === 'zh' ? 'en' : 'zh';
+                    updateLanguage(newLang);
+                });
+            }
+        });
+
+        // 导航栏滚动效果
+        window.addEventListener('scroll', function() {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('bg-darkbg/95');
+                navbar.classList.remove('bg-darkbg/80');
+            } else {
+                navbar.classList.add('bg-darkbg/80');
+                navbar.classList.remove('bg-darkbg/95');
+            }
+        });
+
+        // 移动端菜单切换
+        document.getElementById('menu-toggle').addEventListener('click', function() {
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // 平滑滚动
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                    // 如果是移动端，点击后关闭菜单
+                    const mobileMenu = document.getElementById('mobile-menu');
+                    if (!mobileMenu.classList.contains('hidden')) {
+                        mobileMenu.classList.add('hidden');
+                    }
+                }
+            });
+        });
+
+
+    </script>
+
+    </body></html>
+    <script>
+        // MBTI弹窗逻辑
+        document.addEventListener('DOMContentLoaded', function() {
+            var mbtiCard = document.getElementById('mbti-card');
+            var mbtiModal = document.getElementById('mbti-modal');
+            var mbtiModalClose = document.getElementById('mbti-modal-close');
+            if (mbtiCard && mbtiModal && mbtiModalClose) {
+                mbtiCard.addEventListener('click', function() {
+                    mbtiModal.classList.remove('hidden');
+                });
+                mbtiModalClose.addEventListener('click', function() {
+                    mbtiModal.classList.add('hidden');
+                });
+                mbtiModal.addEventListener('click', function(e) {
+                    if (e.target === mbtiModal) {
+                        mbtiModal.classList.add('hidden');
+                    }
+                });
+            }
+        });
+    </script>
+
+    <!-- iPhone抢购工具弹窗结构 -->
+    <div id="iphone-modal" class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-60 hidden">
+        <div class="bg-white rounded-2xl p-6 relative max-w-xs w-full flex flex-col items-center">
+            <img src="http://www.tigerz.asia/image/gongzhonghao.jpeg" alt="iPhone抢购工具二维码" class="w-60 h-60 object-cover rounded-xl mb-4">
+            <button id="iphone-modal-close" class="absolute top-2 right-2 text-gray-500 hover:text-primary text-2xl">&times;</button>
+        </div>
+    </div>
+
+    <script>
+        // iPhone抢购工具弹窗逻辑
+        document.addEventListener('DOMContentLoaded', function() {
+            var iphoneCard = document.getElementById('iphone-card');
+            var iphoneModal = document.getElementById('iphone-modal');
+            var iphoneModalClose = document.getElementById('iphone-modal-close');
+            if (iphoneCard && iphoneModal && iphoneModalClose) {
+                iphoneCard.addEventListener('click', function() {
+                    iphoneModal.classList.remove('hidden');
+                });
+                iphoneModalClose.addEventListener('click', function() {
+                    iphoneModal.classList.add('hidden');
+                });
+                iphoneModal.addEventListener('click', function(e) {
+                    if (e.target === iphoneModal) {
+                        iphoneModal.classList.add('hidden');
+                    }
+                });
+            }
+        });
+    </script>
+    <script>
+        // 联系表单处理
+        document.addEventListener('DOMContentLoaded', function() {
+            const contactForm = document.getElementById('contact-form');
+            if (contactForm) {
+                contactForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    const formData = new FormData(this);
+                    const submitButton = this.querySelector('button[type="submit"]');
+                    const originalText = submitButton.textContent;
+                    
+                    // 根据当前语言设置按钮文本
+                    const sendingText = currentLanguage === 'zh' ? '发送中...' : 'Sending...';
+                    const successText = currentLanguage === 'zh' ? '消息发送成功！我会尽快回复你。' : 'Message sent successfully! I will reply as soon as possible.';
+                    const errorText = currentLanguage === 'zh' ? '发送失败，请稍后重试。' : 'Send failed, please try again later.';
+                    
+                    submitButton.textContent = sendingText;
+                    submitButton.disabled = true;
+                    
+                    fetch(this.action, {
+                        method: 'POST',
+                        body: formData,
+                        headers: {
+                            'Accept': 'application/json'
+                        }
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.ok) {
+                            alert(successText);
+                            this.reset();
+                        } else {
+                            alert(errorText);
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                        alert(errorText);
+                    })
+                    .finally(() => {
+                        submitButton.textContent = originalText;
+                        submitButton.disabled = false;
+                    });
+                });
+            }
+        });
+    </script>
